@@ -1,0 +1,12 @@
+[user]
+	email = berardgui@gmail.com
+	name = Guillaume Berard
+[alias]
+	st = status
+	co = checkout
+	ci = commit
+	pm = push origin master
+	pn = push origin next
+	br = branch
+	cp = cherry-pick
+	dh = diff HEAD~
