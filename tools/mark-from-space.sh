@@ -9,3 +9,6 @@ fi
 
 mkdir $MARK_PATH
 git clone git@github.com:joetde/mark.git $MARK_REPO
+
+sh $MARK_REPO/tools/mark-set.sh
+
