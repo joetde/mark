@@ -12,6 +12,15 @@ alias lrt='ls -lrt'
 alias grep='grep --color=auto'
 alias v='vim'
 alias countsort='sort | uniq -c | sort -rnb'
+alias fls='for f in $(ls); do '
+# OS specific aliases
+case $(uname -o) in
+  "Cygwin")
+    alias n='explorer .'
+    ;;
+  "Linux")
+    ;;
+esac
 
 ### Bash prompt ###
 export GIT_PS1_SHOWDIRTYSTATE=1
@@ -47,3 +56,13 @@ D () {
   local first_dir=$(find -L . -name $1 -not -path '*.*' | head -n 1)
   cd $first_dir
 }
+
+## File functions
+# Rename files with timestamp
+rename-to-date () {
+  for f in $(ls); do
+    local epoch=$(stat -c "%W" $f)
+    mv -i $f $epoch-$1-$f
+  done
+}
+
