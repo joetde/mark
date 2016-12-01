@@ -14,9 +14,12 @@ alias v='vim'
 alias countsort='sort | uniq -c | sort -rnb'
 alias fls='for f in $(ls); do '
 # OS specific aliases
-case $(uname -o) in
+case $(uname -o 2> /dev/null || uname) in
   "Cygwin")
     alias n='explorer .'
+    ;;
+  "Darwin")
+    alias n='open .'
     ;;
   "Linux")
     ;;
