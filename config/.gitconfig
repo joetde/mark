@@ -10,3 +10,4 @@
 	br = branch
 	cp = cherry-pick
 	dh = diff HEAD~
+	nb = checkout -tb
