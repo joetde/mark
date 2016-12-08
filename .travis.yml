@@ -1,0 +1,14 @@
+
+os:
+    - linux
+    - osx
+
+install: true
+
+script:
+    - 'echo TODO'
+
+branches:
+    only:
+        - master
+
