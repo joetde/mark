@@ -11,3 +11,6 @@
 	cp = cherry-pick
 	dh = diff HEAD~
 	nb = checkout -tb
+[rerere]
+    enable = true
+
