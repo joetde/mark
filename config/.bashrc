@@ -1,8 +1,24 @@
 
+_source_if_exists() {
+    if [ -f "$1" ]
+    then
+        source "$1"
+    fi
+}
+
 ### Global variables ###
+# Mark paths
 export MARK_PATH=~/.mark.config
 export MARK_DEPS=$MARK_PATH/deps
 export MARK_REPO=$MARK_PATH/repo
+export MARK_DATA=$MARK_PATH/data
+export MARK_CONFIG=$MARK_REPO/config
+export MARK_AUTOC=$MARK_CONFIG/autocomplete
+
+### Load code
+# Autocomplete code
+_source_if_exists /usr/local/etc/bash_completion
+source $MARK_AUTOC/*.autoc
 
 ### Basic aliases ###
 alias ls='ls --color=auto'
@@ -54,6 +70,13 @@ mkcd () {
   cd $1
 }
 
+# Improved cd
+c () {
+    local extended_dir=$(ls -d $PROJECT_DIRECTORIES/$1 2> /dev/null)
+    cd $1 2> /dev/null || cd $extended_dir
+    #echo $(pwd) >> $MARK_DATA/autoc_stats
+}
+
 # Find first directory match and move
 D () {
   local first_dir=$(find -L . -name $1 -not -path '*.*' | head -n 1)
@@ -61,7 +84,7 @@ D () {
 }
 
 ## File functions
-# Rename files with timestamp
+# Rename files with timestamp TODO
 rename-to-date () {
   for f in $(ls); do
     local epoch=$(stat -c "%W" $f)

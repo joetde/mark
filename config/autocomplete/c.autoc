@@ -1,0 +1,7 @@
+_c_complete()
+{
+    local CDPATH=$(ls -d $PROJECT_DIRECTORIES | tr -s [:space:] ':')
+    _cd
+}
+complete -F _c_complete -o nospace c
+
