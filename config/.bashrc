@@ -1,8 +1,9 @@
 
 _source_if_exists() {
-    if [ -f "$1" ]
+    f=$(ls "$@" 2> /dev/null)
+    if [ -f "$f" ]
     then
-        source "$1"
+        source "$f"
     fi
 }
 
@@ -17,7 +18,7 @@ export MARK_AUTOC=$MARK_CONFIG/autocomplete
 
 ### Load code
 # Autocomplete code
-_source_if_exists /usr/local/etc/bash_completion
+_source_if_exists {/usr/local,}/etc/bash_completion
 source $MARK_AUTOC/*.autoc
 
 ### Basic aliases ###
