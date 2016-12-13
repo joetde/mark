@@ -11,6 +11,8 @@
 	cp = cherry-pick
 	dh = diff HEAD~
 	nb = checkout -tb
+	ig = update-index --assume-unchanged
+	ar = remote add
 [rerere]
     enable = true
 
