@@ -30,6 +30,9 @@ alias grep='grep --color=auto'
 alias v='vim'
 alias countsort='sort | uniq -c | sort -rnb'
 alias fls='for f in $(ls); do '
+alias remake='make re'
+# To remember
+alias gcc_defines='gcc -E -dM - < /dev/null'
 # OS specific aliases
 case $(uname -o 2> /dev/null || uname) in
   "Cygwin")
@@ -73,9 +76,14 @@ mkcd () {
 
 # Improved cd
 c () {
-    local extended_dir=$(ls -d $PROJECT_DIRECTORIES/$1 2> /dev/null)
-    cd $1 2> /dev/null || cd $extended_dir
-    #echo $(pwd) >> $MARK_DATA/autoc_stats
+    if [ -z "$1" ]
+    then
+        cd
+    else
+        local extended_dir=$(ls -d $PROJECT_DIRECTORIES/$1 2> /dev/null)
+        cd "$1" 2> /dev/null || cd "$extended_dir" 2> /dev/null || cd "$1"
+        #echo $(pwd) >> $MARK_DATA/autoc_stats
+    fi
 }
 
 # Find first directory match and move
