@@ -92,12 +92,3 @@ D () {
   cd $first_dir
 }
 
-## File functions
-# Rename files with timestamp TODO
-rename-to-date () {
-  for f in $(ls); do
-    local epoch=$(stat -c "%W" $f)
-    mv -i $f $epoch-$1-$f
-  done
-}
-

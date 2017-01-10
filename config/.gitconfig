@@ -13,6 +13,7 @@
 	nb = checkout -tb
 	ig = update-index --assume-unchanged
 	ar = remote add
+	lc = log --format="%H" -n 1
 [rerere]
     enable = true
 
