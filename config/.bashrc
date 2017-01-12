@@ -46,12 +46,34 @@ case $(uname -o 2> /dev/null || uname) in
 esac
 
 ### Bash prompt ###
+# Gentoo prefix
+if [ -z "$EPREFIX" ]
+then
+    export PROMPT_SUFFIX="•"
+else
+    export PROMPT_SUFFIX="º"
+fi
+# Custom
+export SHORT_PROMPT=1
+__prompt_prefix () {
+    local h=$(hostname -s)
+    local u=$USER
+    local w=$(basename $PWD)
+    if [ -z "$SHORT_PROMPT" ]
+    then
+        printf "[\033[01;32m$u@$h\033[00m:\033[01;34m$w\033[00m]"
+    else
+        printf "@[\033[01;34m$w\033[00m]"
+    fi
+}
+# Git
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
 export GIT_PS1_SHOWUPSTREAM="auto"
 source $MARK_DEPS/git-prompt.sh
-PS1='[\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]$(__git_ps1 " (%s)")]\$ '
+# Prompt
+PS1='$(__prompt_prefix)$(__git_ps1 " (%s)")]$PROMPT_SUFFIX '
 
 ### Display functions ###
 sep () {
