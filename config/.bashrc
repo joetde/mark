@@ -51,7 +51,7 @@ if [ -z "$EPREFIX" ]
 then
     export PROMPT_SUFFIX="•"
 else
-    export PROMPT_SUFFIX="º"
+    export PROMPT_SUFFIX="≈"
 fi
 # Custom
 export SHORT_PROMPT=1
