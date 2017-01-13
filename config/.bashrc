@@ -114,3 +114,9 @@ D () {
   cd $first_dir
 }
 
+### Compilation ###
+# Get C prototypes from file
+c_proto () {
+    ctags -x --c-kinds=fp $1 | awk '{$1=$2=$3=$4=""; print}' | cut -c 5-
+}
+
