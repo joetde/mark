@@ -61,9 +61,9 @@ __prompt_prefix () {
     local w=$(basename $PWD)
     if [ -z "$SHORT_PROMPT" ]
     then
-        printf "[\033[01;32m$u@$h\033[00m:\033[01;34m$w\033[00m]"
+        printf "[$u@$h:$w]"
     else
-        printf "@[\033[01;34m$w\033[00m]"
+        printf "[$w]"
     fi
 }
 # Git
