@@ -73,7 +73,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=1
 export GIT_PS1_SHOWUPSTREAM="auto"
 source $MARK_DEPS/git-prompt.sh
 # Prompt
-PS1='$(__prompt_prefix)$(__git_ps1 " (%s)")]$PROMPT_SUFFIX '
+PS1='$(__prompt_prefix)$(__git_ps1 " (%s)")$PROMPT_SUFFIX '
 
 ### Display functions ###
 sep () {
