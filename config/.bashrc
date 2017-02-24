@@ -87,6 +87,7 @@ boom () {
     echo "";
   done
   sep "#";
+  clear
 }
 
 ### Navigation function ###
@@ -96,16 +97,30 @@ mkcd () {
   cd $1
 }
 
+# Most visited directories (helper for improved cd)
+_most_visited_directories () {
+    cat $MARK_DATA/.c_history | sort | uniq -c | sort -rnb | head | awk '{print $2}'
+}
+
 # Improved cd
 c () {
     if [ -z "$1" ]
     then
         cd
+    elif echo $1 | egrep -q '^\+[1-6]$';
+    then
+        local arg=$1
+        cd $(_most_visited_directories | sed -n "${arg:1}p")
     else
         local extended_dir=$(ls -d $PROJECT_DIRECTORIES/$1 2> /dev/null)
         cd "$1" 2> /dev/null || cd "$extended_dir" 2> /dev/null || cd "$1"
-        #echo $(pwd) >> $MARK_DATA/autoc_stats
     fi
+    echo $(pwd) >> $MARK_DATA/.c_history
+}
+
+# find names
+f () {
+    find . -name "*$1*"
 }
 
 # Find first directory match and move
