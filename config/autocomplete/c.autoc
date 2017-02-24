@@ -3,7 +3,7 @@ _c_complete()
     local cur="${COMP_WORDS[COMP_CWORD]}"
     if [[ ${cur} == + ]] ; then
         echo ""
-        _most_visited_directories
+        _most_visited_directories | awk '{t = t+1; print t,$1}'
         COMPREPLY=()
         return 0
     fi
