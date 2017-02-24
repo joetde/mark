@@ -99,7 +99,7 @@ mkcd () {
 
 # Most visited directories (helper for improved cd)
 _most_visited_directories () {
-    cat $MARK_DATA/.c_history | sort | uniq -c | sort -rnb | head | awk '{print $2}'
+    cat $MARK_DATA/.c_history | sort | uniq -c | sort -rnb | head | awk '{print $2}' | head -n 9
 }
 
 # Improved cd
@@ -107,7 +107,7 @@ c () {
     if [ -z "$1" ]
     then
         cd
-    elif echo $1 | egrep -q '^\+[1-6]$';
+    elif echo $1 | egrep -q '^\+[1-9]$';
     then
         local arg=$1
         cd $(_most_visited_directories | sed -n "${arg:1}p")
