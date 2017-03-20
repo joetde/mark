@@ -31,8 +31,10 @@ alias v='vim'
 alias countsort='sort | uniq -c | sort -rnb'
 alias fls='for f in $(ls); do '
 alias remake='make re'
+alias m5='make -j5'
 # To remember
 alias gcc_defines='gcc -E -dM - < /dev/null'
+alias gcc_asm='gcc -S -xc - -o -'
 # OS specific aliases
 case $(uname -o 2> /dev/null || uname) in
   "Cygwin")
@@ -133,5 +135,10 @@ D () {
 # Get C prototypes from file
 c_proto () {
     ctags -x --c-kinds=fp $1 | awk '{$1=$2=$3=$4=""; print}' | cut -c 5-
+}
+
+# Binary manipulation
+to_bin () {
+  python -c "print bin(int('$1', 16))[2:]"
 }
 
