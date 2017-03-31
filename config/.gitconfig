@@ -14,6 +14,7 @@
 	ig = update-index --assume-unchanged
 	ar = remote add
 	lc = log --format="%H" -n 1
+    ds = diff --stat
 [rerere]
     enable = true
 
