@@ -138,7 +138,15 @@ c_proto () {
 }
 
 # Binary manipulation
-to_bin () {
-  python -c "print bin(int('$1', 16))[2:]"
+p () {
+  python -c "$*"
+}
+
+hex_to_bin () {
+  p "print bin(int('$1', 16))[2:]"
+}
+
+hex_xor () {
+  p "h='$1'; xl=[int(h[i:i+2], 16) for i in range(0, len(h), 2)]; x=reduce(lambda a,b: a ^ b, xl, 0); print hex(x)[2:].upper()"
 }
 
