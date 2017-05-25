@@ -143,10 +143,12 @@ p () {
 }
 
 hex_to_bin () {
-  p "print bin(int('$1', 16))[2:]"
+  local h=$(echo $1 | tr -d " ")
+  p "print bin(int('$h', 16))[2:]"
 }
 
 hex_xor () {
-  p "h='$1'; xl=[int(h[i:i+2], 16) for i in range(0, len(h), 2)]; x=reduce(lambda a,b: a ^ b, xl, 0); print hex(x)[2:].upper()"
+  local h=$(echo $1 | tr -d " ")
+  p "h='$h'; xl=[int(h[i:i+2], 16) for i in range(0, len(h), 2)]; x=reduce(lambda a,b: a ^ b, xl, 0); print hex(x)[2:].upper()"
 }
 
