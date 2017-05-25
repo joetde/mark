@@ -32,6 +32,7 @@ alias countsort='sort | uniq -c | sort -rnb'
 alias fls='for f in $(ls); do '
 alias remake='make re'
 alias m5='make -j5'
+alias rank='awk "{t = t+1; print t,\$1}"'
 # To remember
 alias gcc_defines='gcc -E -dM - < /dev/null'
 alias gcc_asm='gcc -S -xc - -o -'
