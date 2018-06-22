@@ -126,10 +126,29 @@ f () {
     find . -name "*$1*"
 }
 
+# find and search exetensions
+feg () {
+    find . -name "*.$1" -exec grep -Hn "$2" {} \;
+}
+
 # Find first directory match and move
 D () {
   local first_dir=$(find -L . -name $1 -not -path '*.*' | head -n 1)
   cd $first_dir
+}
+
+### Git ###
+gdl () {
+    git diff $1~..$1
+}
+
+### Do things ###
+for_n () {
+  for i in $(seq $1); do ${@:2}; done
+}
+
+twice () {
+  for_n 2 $@
 }
 
 ### Compilation ###

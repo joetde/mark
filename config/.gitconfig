@@ -15,6 +15,8 @@
 	ar = remote add
 	lc = log --format="%H" -n 1
     ds = diff --stat
+    dhs = diff HEAD~ --stat
+    dhn = diff HEAD~ --name-only
 [rerere]
     enable = true
 
