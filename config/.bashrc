@@ -59,14 +59,15 @@ fi
 # Custom
 export SHORT_PROMPT=1
 __prompt_prefix () {
+    local t=$(date +"%T")
     local h=$(hostname -s)
     local u=$USER
     local w=$(basename $PWD)
     if [ -z "$SHORT_PROMPT" ]
     then
-        printf "[$u@$h:$w]"
+        printf "[$t][$u@$h:$w]"
     else
-        printf "[$w]"
+        printf "[$t][$w]"
     fi
 }
 # Git
@@ -144,7 +145,21 @@ gdl () {
 
 ### Do things ###
 for_n () {
-  for i in $(seq $1); do ${@:2}; done
+  local successes=0
+  for i in $(seq $1); do
+    ${@:2}
+    if [ $? -eq 0 ]; then
+      ((successes=successes+1))
+    fi
+  done
+  echo "$successes / $1"
+}
+
+retry() {
+  for i in $(seq $1); do
+    ${@:2} && break
+    sleep 1
+  done
 }
 
 twice () {
