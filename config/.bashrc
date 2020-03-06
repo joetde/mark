@@ -170,6 +170,10 @@ gpid () {
   ps aux | grep $1 | grep -v grep | awk '{print $2}'
 }
 
+kn () {
+  kill $(gpid $1)
+}
+
 ### Compilation ###
 # Get C prototypes from file
 c_proto () {
