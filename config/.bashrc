@@ -166,6 +166,10 @@ twice () {
   for_n 2 $@
 }
 
+gpid () {
+  ps aux | grep $1 | grep -v grep | awk '{print $2}'
+}
+
 ### Compilation ###
 # Get C prototypes from file
 c_proto () {
