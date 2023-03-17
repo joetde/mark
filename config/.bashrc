@@ -15,6 +15,7 @@ export MARK_REPO=$MARK_PATH/repo
 export MARK_DATA=$MARK_PATH/data
 export MARK_CONFIG=$MARK_REPO/config
 export MARK_AUTOC=$MARK_CONFIG/autocomplete
+export MARK_TOOLS=$MARK_REPO/tools
 
 ### Load code
 # Autocomplete code
@@ -123,9 +124,9 @@ c () {
 }
 
 # find names
-f () {
-    find . -name "*$1*"
-}
+# f () {
+#    find . -name "*$1*"
+# }
 
 # find and search exetensions
 feg () {
@@ -193,5 +194,11 @@ hex_to_bin () {
 hex_xor () {
   local h=$(echo $1 | tr -d " ")
   p "h='$h'; xl=[int(h[i:i+2], 16) for i in range(0, len(h), 2)]; x=reduce(lambda a,b: a ^ b, xl, 0); print hex(x)[2:].upper()"
+}
+
+### AI crap ###
+# ChatGPT
+G () {
+  $MARK_TOOLS/gpt-query.py "$*"
 }
 

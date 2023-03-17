@@ -5,6 +5,7 @@
 	st = status
 	co = checkout
 	ci = commit
+    po = push origin HEAD
 	pm = push origin master
 	pn = push origin next
 	br = branch
